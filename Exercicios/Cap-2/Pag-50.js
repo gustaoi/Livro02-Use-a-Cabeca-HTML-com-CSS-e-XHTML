@@ -15,5 +15,5 @@ while (scoops >= 0)
         alert("Still lots of ice cream left, come and get it.")
         }
 scoops = scoops - 1;
-}
+
 alert("life without ice cream isn't the same");
