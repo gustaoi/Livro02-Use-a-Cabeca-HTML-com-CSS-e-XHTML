@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Temperatures</title>
+    <meta charset="utf-8">
+    <script>
+        function showTemps() {
+            var tempByHour = new ____________;
+            tempByHour[0] = 59.2;
+            tempByHour[1] = 60.1;
+            tempByHour[2] = 63;
+            tempByHour[3] = 65;
+            tempByHour[4] = 62;
+            for (var i = 0; i < ___________________; _____) {
+                var theTemp = _____________[i];
+                var id = "__________" + i;
+                var li = document.__________________(id);
+                if (i == ____) {
+                    li.______________ = "The temperature at noon was " + theTemp;
+                } else {
+                    li.innerHTML = "The temperature at " + ______ + " was " + _________;
+                }
+            }
+        }
+        window.onload = showTemps;
+    </script>
+</head>
+
+<body>
+    <h1>Temperatures</h1>
+    <ul>
+        <li id="temp0"></li>
+        <li id="temp1"></li>
+        <li id="temp2"></li>
+        <li id="temp3"></li>
+        <li id="temp4"></li>
+    </ul>
+</body>
+
+</html>
