@@ -2,6 +2,7 @@
 
 /* Add Songs */
 
+
 window.onload = init;
 
 function init() {
@@ -17,6 +18,11 @@ function handleButtonClick() {
     if (songName === "") {
         alert("Insert a Song")
     } else {
-        alert("Adding " + songName)    
+        let ul = document.getElementById("iplaylist");
+        let li = document.createElement("li");
+        
+        li.innerHTML = songName;
+
+        ul.appendChild(li)
     }
 }
