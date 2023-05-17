@@ -4,7 +4,7 @@ function init() {
     var button = document.getElementById('iaddbutton');
 
     button.onclick = handleButtonClick;
-    loadPlaylist();
+    loadiPlaylist();
 }
 
 function handleButtonClick() {

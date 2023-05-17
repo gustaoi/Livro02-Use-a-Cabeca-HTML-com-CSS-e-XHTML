@@ -1,0 +1,45 @@
+oque é uma função(function) ?
+
+Iremos usar esse um exemplo de função:
+
+function bark(dogName, dogWeight) {
+    if (dogWeight <= 10) {
+        return dogName + " says Yip";
+    } else {
+        return dogName + " says Woof";
+    }
+}
+
+Essa função ira testar uma latido do cachorro de acordo com o seu peso(dogWeight), tomando os parâmetros (dogName, dogWeight).
+
+Para chamar a função bastar dar os ARGUMENTOS ex:
+
+let bark = bark("Salsicha", 7) (string"", number);
+
+Ao fazer isso a função ira utilizar esses ARGUMENTOS na execução ficando:
+
+function bark("Salsicha", 7) {
+    if (dogWeight <= 10) {
+        return dogName + " says Yip";
+    } else {
+        return dogName + " says Woof";
+    }
+}
+
+Depois do corpo da funçaõ ter executado os ARGUMENTOS de cima para baixo irá retornar o resultado, nesse caso ira retornar:
+
+    Salsicha says Yip
+
+Pois o dogWeight(7) é menor e não igual(<=) a 10
+
+Então como funciona o return ?
+
+Quando uma funçaõ retorna um valor (nem todas devem retornar) esse valor passará para o código que a chamou assim:
+
+let bark = "Salsicha says Yip";
+
+Parâmetros: function cook(ing1, ing2, ing3) {}
+
+Argumentos: let recipe = cook("pão", "queijo", "presunto");
+
+
