@@ -1,4 +1,4 @@
-oque é uma função(function) ?
+        ---oque é uma função(function) ?---
 
 Iremos usar esse um exemplo de função:
 
@@ -32,7 +32,7 @@ Depois do corpo da funçaõ ter executado os ARGUMENTOS de cima para baixo irá 
 
 Pois o dogWeight(7) é menor e não igual(<=) a 10
 
-Então como funciona o return ?
+        ---Então como funciona o return ?---
 
 Quando uma funçaõ retorna um valor (nem todas devem retornar) esse valor passará para o código que a chamou assim:
 
@@ -42,4 +42,32 @@ Parâmetros: function cook(ing1, ing2, ing3) {}
 
 Argumentos: let recipe = cook("pão", "queijo", "presunto");
 
+        ---Podemos usar funções como valores?---
 
+SIM, podemos declarar funções valores de variaveis e até events como por exemplo:
+
+function addOne(num) {
+    return num + 1;
+}
+
+var plusOne = addOne; // Não chamei a função, passei como um valor para a variaveis
+
+var result = plusOne(1);
+
+OU (funções sem nome declarado)
+
+function(num) {
+    return num + 1;
+}
+
+var f = function(num) {
+    return num + 1;
+}
+
+var result = f(1);
+
+E com events (window.blablabla)
+
+window.onload = function() {
+    alert("OK")
+}

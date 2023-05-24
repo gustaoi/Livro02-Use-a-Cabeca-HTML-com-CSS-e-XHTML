@@ -1,0 +1,86 @@
+        ---Oque são Objetos?---
+
+Objetos são nada mais que uma "lista" com algumas propiedades por ex:
+
+var cachorro = {
+    name: "bilu",
+    weight: "6",
+    breed: "pincher",
+    loves: ["passear", "comer"]
+}
+
+        ---Algumas Utilidades---
+
+if (cachorro.weight > 25) { // objeto"." e o nome da propiedade
+    alert("WOOF");
+} else {
+    alert("yip");
+}
+
+-----------------------------------
+
+var breed = cachorro["breed"]; // Acessando com ["propiedade"]
+
+if (breed == "mixed") {
+    alert("Best in show");
+}
+
+------------------------------------
+
+cachorro.weight = 27; // mudando a propiedade peso
+
+cachorro.breed = "Chawalla/Great Dane mix"; // raça
+
+cachorro.loves.push("chewing bones"); // Adcionando um novo item a matriz(array) "loves" com ".push"
+
+-------------------------------------
+
+var prop;
+for (prop in cachorro) {  // for in - percorre todo o objeto
+    alert("Fido has a " + prop + " property ");
+if (prop == "name") {
+    alert("This is " + cachorro[prop]);
+    }
+}
+
+--------------------------------------
+
+var likes = cachorro.loves;  // Percorrendo toda a matriz(array)
+var likesString = "cachorro likes";
+for (var i = 0; i < likes.length; i++) {
+    likesString += " " + likes[i];
+}
+
+---------------------------------------
+
+function bark(dog) {  // Passar o objeto para uma função
+if (dog.weight > 25) {
+    alert("WOOF");
+} else {
+    alert("yip");
+    }
+}
+bark(cachorro);
+
+        ---É possivel adcionar uma nova propiedade ?---
+
+Sim, basta colocar o "." (cachorro.age = 2;) e a nova propiedade será adcionada.
+
+Também da pra excluir quaisquer propiedade quando necessário
+com o (delete cachorro.age) e pronto
+
+        ---Objetos também podem guardar funções ?---
+
+Sim, porém quando um objeto está guardando uma função dizemos que aquele obj possui uym método. EX:
+
+var fido = {
+    name: "Fido",
+    weight: 40,
+    breed: "Mixed",
+    loves: ["walks", "fetching balls"]
+    bark: function() {
+        alert("Woof woof!");
+    }
+};
+
+let chamada = fido.bark(); // chamando o método da função
