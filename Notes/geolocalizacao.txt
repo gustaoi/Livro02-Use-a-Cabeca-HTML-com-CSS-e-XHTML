@@ -1,0 +1,34 @@
+        ---Oque é Geolocalização ?---
+
+Geolocalização é uma "API" (API está entre aspas porque dentre os padrões da HTML5 ele nçao é considerado uma API, porém para O W3C ela é uma API), que mostra a localização em padrões latitude e longitude no mundo. porém as vezes séra precisa no local exato, no seu barrio, na sua cidade ou estado. Se caso o usuário permitir o uso da sua localização.
+
+A Geolocalização nos padrões existentes eles podem ser em graus,minutos e segundos ( 47º38’34’’, 122º32’32’’ ) e já a API nos da em valores decimais (47.64, -122.54) apesar de ser um padrão você pode se deparar em momento que terá que converter graus...
+em valores decimais para isso use esse código que converte:
+
+function degreesToDecimal(degrees, minutes, seconds) {
+    return degrees + (minutes / 60.0) + (seconds / 3600.0);
+}
+
+        ---Como a API pega nossa localização ?---
+
+Funciona da seguinte maneira, cada navegador tem o seu própio metodo de adquirir sua localização mesmo que umas sejam mais precisas que outras. As maneiras são baseada em:
+
+IP - Utiliza o ip do seu dispositivo ou do seu provedor internet, assim podendo ser impreciso numa excala maior. pois pode pegar o provedor de outra cidade ou até estado.
+
+"GPS - (Global Positioning System - Sistema de Posicionamento Global) é um sistema baseado no uso de satélites para localização. Ele oferece diversas vantagens em comparação ao IP. Ao contrário do IP, o GPS fornece informações adicionais, como altitude, velocidade e até mesmo direção.
+
+No entanto, para utilizar o GPS, o aparelho precisa ter livre acesso ao céu e tecnologia GPS. Isso pode resultar em um tempo um pouco mais longo para obter a localização desejada.
+
+É importante mencionar também que o uso do GPS tende a consumir mais energia da bateria do aparelho."
+
+    --E se meu GPS não funcionar ?--
+
+"Triangulação de celulares - Esse tipo de tecnologia descobre sua localidade através de torres, celulares compatíveis, conectados a você ou próximos a você, assim ele irá ver sua distância ao ponto conectado e determinar a sua localização precisa (quanto mais pontos próximos, melhor a precisão). sendo bem melhor e bem mais rápido que o GPS."
+
+E por fim a localização via wi-fim
+
+wi-fi - Funciona basicamento do mesmo jeito da triangulação pois ele utiliza hotspots de wi-fi para determinar seu local, e ira funcionar melhor se voce estiver parado.
+
+        ---Então qual método eu vou utilizar ?---
+
+Voce não sabe, Sim quem ira determinar qual método ele irá utilizar será ele, porém geralmente ele primeiro irá utilizar a triangulação de torres, para dar uma ideia de onde está depois irá utilizar ou wi-fi ou GPS para pegar uma localização mais precisa.
