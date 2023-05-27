@@ -32,3 +32,21 @@ wi-fi - Funciona basicamento do mesmo jeito da triangulação pois ele utiliza h
         ---Então qual método eu vou utilizar ?---
 
 Voce não sabe, Sim quem ira determinar qual método ele irá utilizar será ele, porém geralmente ele primeiro irá utilizar a triangulação de torres, para dar uma ideia de onde está depois irá utilizar ou wi-fi ou GPS para pegar uma localização mais precisa.
+
+                ---Que código é usado ?---
+
+O principal método utilizado é o navigator.geolocation(sucessHandler, errorHandler, options)
+
+navigator - é um objeto que pode receber várias propiedades, e uma delas é o geolocation.
+
+geolocation - é uma propiedade usada para determinar a localização do usuário com base nos seus parâmetros.
+
+sucessHandler, errorHandler, options - são pârametros utilizado para personaliar a forma como o método irá pegar sua localização.
+
+Por fim o código:
+
+if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(displayLocation);
+}
+
+o navigator que é um objeto chama outro objeto(propiedade do navegador) que chama o método(função) getCurrentPosition que tem o parâmetro displayLocation(sucessHandler)
