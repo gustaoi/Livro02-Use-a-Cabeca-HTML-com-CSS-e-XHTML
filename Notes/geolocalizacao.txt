@@ -50,3 +50,13 @@ if (navigator.geolocation) {
 }
 
 o navigator que é um objeto chama outro objeto(propiedade do navegador) que chama o método(função) getCurrentPosition que tem o parâmetro displayLocation(sucessHandler)
+
+                ---Como sabemos se está tudo certo ?---
+
+Umas das maneiras de se testar se está tudo OK, é com esse diagnóstico:
+
+navigator.geolocation.getCurrentPosition(displayLocation, displayError);
+
+Ele adciona o mêtodo "errorHandler"(displayError) assim quando qualquer coisa falhar ao chamar a função ele irá executar o errorHandler.
+
+Ao executar o errorHandler(displayError) ele irá criar novos objetos como o "error" que mostra o código numérico descrevendo a razão pela qual não foi possível determinar a localização de seu browse 
