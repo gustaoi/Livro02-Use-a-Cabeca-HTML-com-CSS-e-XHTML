@@ -1,4 +1,4 @@
-// window.onload = getMyLocation; (Não preciso pois o src do script da API do google já esta chamando(callback) a função getMyLocation)
+// window.onload = getMyLocation; (Não preciso pois o src do script da API do google já esta chamando(callback) a função getMyLocation).
 
 //Variaveis Global
 
