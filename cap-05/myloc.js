@@ -1,4 +1,4 @@
-window.onload = getMyLocation;
+// window.onload = getMyLocation; (Não preciso pois o src do script da API do google já esta chamando(callback) a função getMyLocation)
 
 //Variaveis Global
 
@@ -82,6 +82,7 @@ function displayLocation(position) {
     let div = document.getElementById("location");
 
     div.innerHTML = `You are at Latitude: <strong>${latitude}</strong>, Longitude: <strong>${longitude}</strong>`;
+    div.innerHTML += ` (with <strong>${position.coords.accuracy}</strong> meter accuracy)`
 
     let km = computeDistance(position.coords, ourCoords);
     let distance = document.getElementById("distance");
