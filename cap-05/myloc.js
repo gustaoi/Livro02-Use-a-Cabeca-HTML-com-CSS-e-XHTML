@@ -13,7 +13,10 @@ var map; // Usado para mostrar o map na página
 
 function getMyLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(displayLocation, displayError)
+        let watchButton = document.getElementById("watch");
+        watchButton.onclick = watchLocation;
+        let clearWatchButton = document.getElementById("clearWatch");
+        clearWatchButton.onclick = clearWatch;
     } else {
         alert("Oops, no geolocation support")
     };
