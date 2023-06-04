@@ -9,15 +9,60 @@ var ourCoords = { // Coodernada do QG dos Criadores do Livro
 
 var map; // Usado para mostrar o map na página
 
+let prevCoords = null;
+
 // Pegar Localização do usuário
 
 function getMyLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(displayLocation,displayError);
+        var watchButton = document.getElementById("watch");
+        watchButton.onclick = watchLocation;
+        var clearWatchButton = document.getElementById("clearWatch");
+        clearWatchButton.onclick = clearWatch;
     } else {
         alert("Oops, no geolocation support")
     };
 };
+
+// Trabalhando o método geolocation.watch.Position
+
+//Variavel Globais
+
+let watchId = null;
+
+// Handler watchLocation
+
+function watchLocation() {
+    watchId = navigator.geolocation.watchPosition(displayLocation, displayError, {
+        eneableHighAccuracy: true, /* Alta precisão */
+        timeout: 25000, /* tempo para buscar nova localização */
+        maximumAge: 15000
+    }) /* idade da localização atual */
+}
+
+//Handler clearWatch
+
+function clearWatch() {
+    if (watchId) {
+        navigator.geolocation.clearWatch(watchId);
+        watchId = null;
+    };
+}
+
+// Adcionando um marcador em tempo real
+
+function scrollMapToPosition(coords) {
+    var latitude = coords.latitude;
+    var longitude = coords.longitude;
+    var latlong = new google.maps.LatLng(latitude, longitude);
+    map.panTo(latlong);
+    addMarker(map, latlong, "Your new location", "You moved to: " +
+        latitude + ", " + longitude);
+}
+
+
+
+
 
 /*
 function displayLocation(position) {
@@ -29,7 +74,9 @@ function displayLocation(position) {
 };
 */
 
+
 // O objeto "error" especifica qual código do error de 0 a 3
+
 function displayError(error) {
     let errorTypes = {
         0: "Unknow error",
@@ -81,7 +128,7 @@ function displayLocation(position) {
 
     let div = document.getElementById("location");
 
-    div.innerHTML = `You are at Latitude: <strong>${latitude}</strong>, Longitude: <strong>${longitude}</strong>`;
+    div.innerHTML = `You are at: <br><br> Latitude: <strong>${latitude}</strong>,<br><br> Longitude: <strong>${longitude}</strong><br><br>`;
     div.innerHTML += ` (with <strong>${position.coords.accuracy}</strong> meter accuracy)`
 
     let km = computeDistance(position.coords, ourCoords);
@@ -89,7 +136,20 @@ function displayLocation(position) {
 
     distance.innerHTML = `You are <strong>${km}</strong> km from the WickedlySmart HQ`;
 
-    showMap(position.coords);
+    if (map == null) {
+        showMap(position.coords);
+
+
+    // Código para adcionar um marcador só se a distancia da loc antiga for de 20 metros da nova loc
+        prevCoords = position.coords;
+    }
+    else {
+        var meters = computeDistance(position.coords, prevCoords) * 1000;
+        if (meters > 20) {
+            scrollMapToPosition(position.coords);
+            prevCoords = position.coords;
+        }
+    }
 }
 
 // Utilizando a API do google map
@@ -144,7 +204,53 @@ function addMarker(map, latlong, title, content) {
 
     let infoWindow = new google.maps.InfoWindow(infoWindowOptions);
 
-    google.maps.event.addListener(marker, "click", function() {
+    google.maps.event.addListener(marker, "click", function () {
         infoWindow.open(map);
     });
 };
+
+
+// Código Para saber em quantos segundos o Seu aparelho consegue a localização
+
+/*
+var options = { enableHighaccuracy: true, timeout: 100, maximumage: 0 };
+window.onload = getMyLocation;
+function getMyLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            displayLocation,
+            displayError,
+            options);
+    } else {
+        alert("Oops, no geolocation support");
+    }
+}
+function displayError(error) {
+    var errorTypes = {
+        0: "Unknown error",
+        1: "Permission denied",
+        2: "Position is not available",
+        3: "Request timeout"
+    };
+    var errorMessage = errorTypes[error.code];
+    if (error.code == 0 || error.code == 2) {
+        errorMessage = errorMessage + " " + error.message;
+    }
+    var div = document.getElementById("location");
+    div.innerHTML = errorMessage;
+    options.timeout += 100;
+    navigator.geolocation.getCurrentPosition(
+        displayLocation,
+        displayError,
+        options);
+    div.innerHTML += " ... checking again with timeout=" + options.timeout;
+}
+function displayLocation(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    var div = document.getElementById("location");
+    div.innerHTML = "You are at Latitude: " + latitude +
+        ", Longitude: " + longitude;
+    div.innerHTML += " (found in " + options.timeout + " milliseconds)";
+}
+*/
