@@ -1,0 +1,26 @@
+            O que é o JSON e para que serve?
+
+38 Formato JSON | Guia de Abertura de Dados O formato JSON (JavaScript Object Notation) é um formato aberto usado como alternativa ao XML para a transferência de dados estruturados entre um servidor de Web e uma aplicação Web.
+
+Como guardar um objeto no JSON:
+
+var movie = {"title":"Plan 9 from Outer
+Space",
+"genre":"Cult Classic",
+"rating":5,"showtimes":["3:00pm", "7:00pm", "11:00pm"]
+}
+
+JSON.stringfy(movie) // Usamos esse método "stringfy" para armazenar ou trocar o objeto
+
+ao usarmos esse método ele irá retornar uma string:
+
+{
+"title":"Plan 9 from Outer Space",
+"genre":"Cult Classic",
+"rating":5,"showtimes":["3:00pm","7:00pm","11:00pm"]
+}
+
+Para retornar essa string para um objeto denovo usamos JSON.parse(jsonstring).
+Agora vamos para um exemplo real:
+
+exemplo no json.js
