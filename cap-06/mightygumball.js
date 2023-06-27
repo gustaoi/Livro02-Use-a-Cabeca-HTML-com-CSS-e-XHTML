@@ -1,5 +1,12 @@
 // Trabalhando a requisição HTTP
 
+//          JSONP EM TEMPO REAL
+
+setInterval(handleRefresh, 3000);
+
+function handleRefresh() {
+    
+}
 
 function updateSales(sales) {
     var salesDiv = document.getElementById("sales");
