@@ -5,7 +5,22 @@
 setInterval(handleRefresh, 3000);
 
 function handleRefresh() {
-    
+    var url = "http://gumball.wickedlysmart.com?callback=updateSales";
+
+    let newScriptElement = document.createElement("script");
+    newScriptElement.setAttribute("src", url);
+    newScriptElement.setAttribute("id", "jsonp");
+
+    let oldScriptElement = document.getElementById("jsonp");
+    let body = document.getElementsByTagName("body") [0];
+
+// Vamos ficar criando um novo elemento script para o browser indentificar e lé-lo, pois não adianta mudar apenas o src. está têcnica é chamada de "script injection"
+
+    if (oldScriptElement == null) {
+        body.appendChild(newScriptElement);
+    } else {
+        body.replaceChild(newScriptElement, oldScriptElement);
+    }
 }
 
 function updateSales(sales) {
