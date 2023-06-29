@@ -1,11 +1,17 @@
 // Trabalhando a requisição HTTP
 
+// Variavel do Tempo do ultimo relatório
+//let lastReportTime = 0;
+
 //          JSONP EM TEMPO REAL
 
 setInterval(handleRefresh, 3000);
 
 function handleRefresh() {
-    var url = "http://gumball.wickedlysmart.com?callback=updateSales";
+    var url = "http://gumball.wickedlysmart.com" +
+    "?callback=updateSales" +
+    "&lastreporttime=" + lastReportTime +
+    "&random=" + (new Date()).getTime();
 
     let newScriptElement = document.createElement("script");
     newScriptElement.setAttribute("src", url);
@@ -23,6 +29,8 @@ function handleRefresh() {
     }
 }
 
+
+
 function updateSales(sales) {
     var salesDiv = document.getElementById("sales");
     
@@ -34,6 +42,10 @@ function updateSales(sales) {
         div.setAttribute("class", "saleItem");
         div.innerHTML = `<b>${sale.name}</b> sold <b>${sale.sales}</b> gumball`;
         salesDiv.appendChild(div)
+    }
+
+    if (sales.length > 0) {
+        lastReportTime = sales[sales.length-1].time;
     }
 }
     
