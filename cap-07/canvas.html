@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste canvas</title>
+
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById("test");
+
+            // teste para ver se seu browser suporta canvas
+            if (canvas.getContext) {
+                var context = canvas.getContext("2d");
+
+                context.fillRect(10, 10, 100, 100);
+            } else {
+                alert("your browser don't support canvas")
+            }
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="test" width="600" height="200" style="border: 1px solid black;"></canvas>
+</body>
+
+</html>
