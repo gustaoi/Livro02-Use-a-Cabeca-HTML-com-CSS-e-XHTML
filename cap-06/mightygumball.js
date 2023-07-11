@@ -38,9 +38,13 @@ function updateSales(sales) {
     console.log(sales)
     for (let i = 0; i < sales.length; i++) {
         const sale = sales[i];
+
         var div = document.createElement("div");
+
         div.setAttribute("class", "saleItem");
+
         div.innerHTML = `<b>${sale.name}</b> sold <b>${sale.sales}</b> gumball`;
+
         salesDiv.appendChild(div)
     }
 
@@ -85,12 +89,18 @@ request.onload = function () {
 
             // Passando de string para um objeto JS
             var sales = JSON.parse(responseText);
+
             console.log(sales)
+
             for (let i = 0; i < sales.length; i++) {
                 const sale = sales[i];
+
                 var div = document.createElement("div");
+
                 div.setAttribute("class", "saleItem");
+
                 div.innerHTML = `<b>${sale.name}</b> sold <b>${sale.sales}</b> gumball`;
+                
                 salesDiv.appendChild(div)
             }
         }
