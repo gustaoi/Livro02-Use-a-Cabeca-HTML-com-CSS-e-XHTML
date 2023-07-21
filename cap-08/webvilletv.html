@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tv Webville</title>
+    <link rel="stylesheet" href="webvilleTv.css">
+
+    <style>
+        body {
+            background-color: lightgoldenrodyellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="tv">
+        <div id="tvConsole">
+            <div id="highlight">
+                <img src="images/highlight.png" alt="A reflex by light" srcset="">
+            </div>
+            <div id="videoDiv">
+                <video controls width="480" height="360" poster="images/prerollposter.jpg" id="video">
+
+                    <!-- Container: formato de arquivo usado para compactar o vídeo,áudio e meta dados; ex: mp4, ogg, WebM e o obsoleto Flash Video.
+                    
+                    O codec é o software usado para decodificar os container video e audio; ex: H.264, VP8, Theora, AAC, Vorbis.
+
+                    <source src="video/preroll.webm" type='video/webm; codec="vp8, vorbis"'>
+
+                    <source src="video/preroll.mp4" type='video/mp4; codec="avc1, mp4a-40-2"'> -->
+
+                    <p>Sorry, your browser doesn't have support the video elemente</p>
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script src="webvilletv.js"></script>
+</body>
+</html>
