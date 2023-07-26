@@ -96,12 +96,16 @@ function setEffect(e) {
     if (id == "normal") {
         pushUnpushButtons("normal", ["western", "noir", "scifi"]);
         effectFunction = null;
+
     } else if (id == "western") {
         pushUnpushButtons("western", ["normal", "noir", "scifi"]);
         effectFunction = western;
+
     } else if (id == "noir") {
         pushUnpushButtons("noir", ["normal", "western", "scifi"]);
+
         effectFunction = noir;
+
     } else if (id == "scifi") {
         pushUnpushButtons("scifi", ["normal", "western", "noir"]);
         effectFunction = scifi;
@@ -173,25 +177,32 @@ function isButtonPushed(id) {
 
 // Processar os frame dos videos
 
-function processFrame() {
+function processFrame(e) {
     let video = document.getElementById("video");
+    
     if (video.paused || video.ended) {
-        return
-    };
+        return;
+    }
 
     let bufferCanvas = document.getElementById("buffer");
-    
+
     let displayCanvas = document.getElementById("display");
-    
+
     let buffer = bufferCanvas.getContext("2d");
-    
+
     let display = displayCanvas.getContext("2d");
 
-    buffer.drawImage(video, 0, 0, bufferCanvas.clientWidth, bufferCanvas.height);
+    buffer.drawImage(video, 0, 0, bufferCanvas.width, bufferCanvas.height);
+
+    // Obtém os dados da imagem do canvas "buffer". O método getImageData() retorna um objeto que contém uma matriz de bytes representando os valores RGBA (vermelho, verde, azul e alfa) de cada pixel do canvas.
 
     let frame = buffer.getImageData(0, 0, bufferCanvas.width, bufferCanvas.height);
 
-    let lenght = frame.data.lenght / 4;
+    //  Calcula o comprimento do array de dados da imagem dividindo o comprimento total por 4. Isso é feito porque cada pixel é representado por 4 valores (RGBA), portanto, o comprimento total da matriz é quatro vezes o número de pixels.
+
+    let length = frame.data.length / 4;
+
+    //  Percorre todos os pixels da imagem usando um loop for. Dentro do loop for, a função obtém os valores R, G e B de cada pixel da imagem:
 
     for (let i = 0; i < length; i++) {
         let r = frame.data[i * 4 + 0];
@@ -199,8 +210,20 @@ function processFrame() {
         let b = frame.data[i * 4 + 2];
         if (effectFunction) {
             effectFunction(i, r, g, b, frame.data);
-        }   
+        }
     }
 
     display.putImageData(frame, 0, 0);
+
+    //Atualizar em tempo real
+    setTimeout(processFrame, 0);
+}
+
+function noir(pos, r, g, b, data) {
+    var brightness = (3 * r + 4 * g + b) >>> 3;
+
+    if (brightness < 0) brightness = 0;
+    data[pos * 4 + 0] = brightness;
+    data[pos * 4 + 1] = brightness;
+    data[pos * 4 + 2] = brightness;
 }
