@@ -38,6 +38,10 @@ window.onload = function () {
 
     pushUnpushButtons("video1", []);
     pushUnpushButtons("normal", []);
+
+    // verify some errors
+
+    video.addEventListener("error", errorHandler, false);
 }
 
 // Botões de Controle
@@ -179,7 +183,7 @@ function isButtonPushed(id) {
 
 function processFrame(e) {
     let video = document.getElementById("video");
-    
+
     if (video.paused || video.ended) {
         return;
     }
@@ -219,6 +223,13 @@ function processFrame(e) {
     setTimeout(processFrame, 0);
 }
 
+function western(pos, r, g, b, data) {
+    var brightness = (3 * r + 4 * g + b) >>> 3;
+    data[pos * 4 + 0] = brightness + 40;
+    data[pos * 4 + 1] = brightness + 20;
+    data[pos * 4 + 2] = brightness - 20;
+}
+
 function noir(pos, r, g, b, data) {
     var brightness = (3 * r + 4 * g + b) >>> 3;
 
@@ -226,4 +237,34 @@ function noir(pos, r, g, b, data) {
     data[pos * 4 + 0] = brightness;
     data[pos * 4 + 1] = brightness;
     data[pos * 4 + 2] = brightness;
+}
+
+function scifi(pos, r, g, b, data) {
+    var offset = pos * 4;
+    data[offset] = Math.round(255 - r);
+    data[offset + 1] = Math.round(255 - g);
+    data[offset + 2] = Math.round(255 - b);
+}
+
+function bwcartoon(pos, r, g, b, outputData) {
+    var offset = pos * 4;
+    if (outputData[offset] < 120) {
+        outputData[offset] = 80;
+        outputData[++offset] = 80;
+        outputData[++offset] = 80;
+    } else {
+        outputData[offset] = 255;
+        outputData[++offset] = 255;
+        outputData[++offset] = 255;
+    }
+    outputData[++offset] = 255;
+    ++offset;
+}
+
+function errorHandler() {
+    var video = document.getElementById("video");
+    if (video.error) {
+        video.poster = "images/technicaldifficulties.jpg";
+        alert(video.error.code);
+    }
 }
